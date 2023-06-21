@@ -21,8 +21,9 @@ const MainDash = (props = {}) => {
                 tempContainer["gpumodel"] = csvData[i][headers["gpu_model"]];
                 tempList.push(tempContainer);
                 g["duration"]+=Number.parseFloat(csvData[i][headers["duration"]]);
-                g["energy"]+=Number.parseFloat(csvData[i][headers["energy_consumed"]]);
-                g["emissions"]+=Number.parseFloat(csvData[i][headers["emissions"]]);
+                // Values scaled temporarily for demo purpose
+                g["energy"]+=Number.parseFloat(csvData[i][headers["energy_consumed"]]) * 1000; 
+                g["emissions"]+=Number.parseFloat(csvData[i][headers["emissions"]]) * 1000;
             }
         
         }
@@ -44,10 +45,11 @@ const MainDash = (props = {}) => {
             }
             {globalValues && 
             <Card className=" mx-auto max-w-xs">
-                <Metric className="text-white">{`Duration: ${globalValues["duration"]} Seconds`}</Metric>
+                <Metric className="text-white">{`Duration: ${(globalValues["duration"]/60).toFixed(2)} Mins`}</Metric>
                 <Divider/>
-                <Metric className="text-white">{`Energy: ${globalValues["energy"]} KwH`}</Metric>
-                <Metric className="text-white">{`Emissions: ${globalValues["emissions"]} CO2 Kg`}</Metric>
+                <Metric className="text-white">{`Energy: ${globalValues["energy"].toFixed(3)} KwH`}</Metric>
+                <Divider/>
+                <Metric className="text-white">{`Emissions: ${globalValues["emissions"].toFixed(3)} CO2 Kg`}</Metric>
             </Card>
             }
             </div>

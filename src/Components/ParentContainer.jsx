@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import MainDash from './InfoPanel';
 import CarbonDonut from './CarbonDonut';
+import LineChart from "./LineChartPanel";
 import { Title, Divider } from "@tremor/react";
 import * as Papa from 'papaparse';
 
@@ -32,6 +33,10 @@ return(
         csvData = {csvFile}
         headers = {csvHeaders}/>
         <CarbonDonut
+        csvData = {csvFile}
+        headers = {csvHeaders}
+        />
+        <LineChart
         csvData = {csvFile}
         headers = {csvHeaders}
         />
