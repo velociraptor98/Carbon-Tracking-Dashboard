@@ -32,6 +32,8 @@ return(
         csvData = {csvFile}
         headers = {csvHeaders}/>
         <CarbonDonut
+        csvData = {csvFile}
+        headers = {csvHeaders}
         />
     </div>
 )

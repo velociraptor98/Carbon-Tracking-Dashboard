@@ -12,7 +12,7 @@ const MainDash = (props = {}) => {
         g["energy"] = 0;
         g["emissions"] = 0;
         if(csvData.length){
-            for(let i = 0; i<csvData.length-1;++i){
+            for(let i = 0; i<csvData.length;++i){
                 let tempContainer = {};
                 tempContainer["name"] = csvData[i][headers["project_name"]];
                 tempContainer["country"] = csvData[i][headers["country_name"]];
@@ -20,9 +20,9 @@ const MainDash = (props = {}) => {
                 tempContainer["cpumodel"] = csvData[i][headers["cpu_model"]];
                 tempContainer["gpumodel"] = csvData[i][headers["gpu_model"]];
                 tempList.push(tempContainer);
-                g["duration"]+=Number.parseFloat(csvData[i][headers["duration"]]).toFixed(2);
-                g["energy"]+=Number.parseFloat(csvData[i][headers["energy_consumed"]]).toFixed(5);
-                g["emissions"]+=Number.parseFloat(csvData[i][headers["emissions"]]).toFixed(5);
+                g["duration"]+=Number.parseFloat(csvData[i][headers["duration"]]);
+                g["energy"]+=Number.parseFloat(csvData[i][headers["energy_consumed"]]);
+                g["emissions"]+=Number.parseFloat(csvData[i][headers["emissions"]]);
             }
         
         }
