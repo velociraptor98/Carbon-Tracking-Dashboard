@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import MainDash from './InfoPanel';
 import CarbonDonut from './CarbonDonut';
 import LineChart from "./LineChartPanel";
-import { Title, Divider, Card } from "@tremor/react";
+import { Title, Divider, Card, Subtitle } from "@tremor/react";
 import * as Papa from 'papaparse';
 
 const ParentContainer = () => {
@@ -11,7 +11,7 @@ const ParentContainer = () => {
     const [infoList,setInfoList] = useState([]);
     const [globalValues,setGlobalValues] = useState({});
     const [listData, setListData] = useState([]);
-    const [selectionPhase,setSelectionPhase] = useState("def");
+    const [selectionPhase,setSelectionPhase] = useState("all");
 
     useEffect(() => {
         fetch( './out.csv' )
@@ -52,7 +52,7 @@ const ParentContainer = () => {
                 tempContainer["gpumodel"] = csvData[i][headers["gpu_model"]];
                 tempList.push(tempContainer);
                 }
-                if(selectionPhase === 'def' || selectionPhase === csvData[i][headers["project_name"]]){
+                if(selectionPhase === 'all' || selectionPhase === csvData[i][headers["project_name"]]){
                 gl["duration"]+=Number.parseFloat(csvData[i][headers["duration"]]);
                 gl["energy"]+=Number.parseFloat(csvData[i][headers["energy_consumed"]]); 
                 gl["emissions"]+=Number.parseFloat(csvData[i][headers["emissions"]]);
@@ -80,23 +80,20 @@ const ParentContainer = () => {
     }
 return(
     <Card className="flex flex-col h-full">
-        <Title className="text-black align-center">Carbon Emission Tracker</Title>
-        <Divider/>
+        <Title className="align-center">Carbon Emission Tracker</Title>
+        <Title>Data for: {`${selectionPhase}`}</Title>
         <MainDash
         infoList = {infoList}
         globalValues = {globalValues}
         onPhaseChange = {onPhaseChange}/>
-        <Divider/>
         <CarbonDonut
         csvData = {csvFile}
         headers = {csvHeaders}
         listData = {listData}
         />
-        <Divider/>
         <LineChart
         listData = {listData}
         />
-        <Divider/>
     </Card>
 )
 }

@@ -3,12 +3,12 @@ import { LineChart,AreaChart, Card, Title, Subtitle } from "@tremor/react";
 const LineChartPanel = (props = {}) => {
 
     return (
-        <div className="flex flex-col">
-        <Card className="mt-6">
+        <Card className="flex flex-col mt-2">
+        <Card className="mt-3">
             <Title>Emissions/Energy</Title>
             <Subtitle>(KwH/Kg Co2)</Subtitle>
             <AreaChart
-            className="mt-6"
+            className="mt-3"
             data={props.listData}
             index="runId"
             categories={["emissions", "energy"]}
@@ -16,11 +16,11 @@ const LineChartPanel = (props = {}) => {
             yAxisWidth={40}
             />
         </Card>
-        <Card className="mt-6">
+        <Card className="mt-3">
             <Title>Duration</Title>
             <Subtitle>(Seconds)</Subtitle>
             <AreaChart
-            className="mt-6"
+            className="mt-3"
             data={props.listData}
             index="runId"
             categories={["duration"]}
@@ -28,7 +28,7 @@ const LineChartPanel = (props = {}) => {
             yAxisWidth={40}
             />
         </Card>
-        <Card className="mt-6">
+        <Card className="mt-3">
             <Title>Component Power Draw</Title>
             <Subtitle>(KwH)</Subtitle>
             <LineChart
@@ -40,7 +40,7 @@ const LineChartPanel = (props = {}) => {
             yAxisWidth={40}
             />
         </Card>
-        </div>
+        </Card>
     )
 }
 export default LineChartPanel;
