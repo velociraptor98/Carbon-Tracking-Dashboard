@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import MainDash from './InfoPanel';
 import CarbonDonut from './CarbonDonut';
 import LineChart from "./LineChartPanel";
-import { Title, Divider, Card, Subtitle } from "@tremor/react";
+import { Title, Card ,Button} from "@tremor/react";
 import * as Papa from 'papaparse';
 
 const ParentContainer = () => {
@@ -81,10 +81,11 @@ const ParentContainer = () => {
         setSelectionPhase(value);
     }
 return(
-    <Card className="flex flex-col h-full">
+    <Card className="flex flex-col h-full overflow-hidden">
         <Card className="flex flex-row justify-evenly">
         <Title className="align-center">Carbon Emission Tracker</Title>
-        <Title> ---  {`${selectionPhase}`}</Title>
+        <Title> {`(${selectionPhase})`}</Title>
+        <Button variant="light" onClick={()=>setSelectionPhase("all")}>Reset</Button>
         </Card>
         <MainDash
         infoList = {infoList}

@@ -1,17 +1,23 @@
 import React from "react";
-import { Card,Title, Divider,Button } from "@tremor/react";
+import { Card,Title, Divider } from "@tremor/react";
 
 const MainDash = (props = {}) => {
     const localChangeHook = (value) => {
         props.onPhaseChange(value);
     }
     return (
-        <Card className="flex flex-col justify-center mt-2">
-            <div className="flex flex-row">
-                <Button variant="light" onClick={()=>localChangeHook("all")}>Reset</Button>
+        <Card className="flex flex-col justify-evenly mt-2 overflow-hidden">
+            <div className="flex flex-row overflow-hidden">
+                <Card className="flex flex-row max-w-5xl ml-2 mt-2 mb-2 overflow-auto">
             {
                 props.infoList && props.infoList.map(function(val){
-                    return (<Card className="max-w-xs mx-auto hover:bg-blue-400" key={val["name"]} onClick={()=>localChangeHook(val["name"])}>
+                    return (<Card 
+                    className="max-w-xs mx-auto hover:bg-blue-400" 
+                    key={val["name"]} 
+                    onClick={()=>localChangeHook(val["name"])}
+                    decoration="left"
+                    decorationColor="blue"
+                    >
                     <Title>{`Phase Name: ${val["name"]}`}</Title>
                     <Title>{`Country: ${val["country"]}`}</Title>
                     <Title>{`Cloud Provider: ${val["cloud"]}`}</Title>
@@ -22,8 +28,9 @@ const MainDash = (props = {}) => {
                 </Card>)
                 })
             }
+            </Card>
             {props.globalValues && 
-            <Card className=" mx-auto max-w-xs">
+            <Card className=" mx-auto max-w-xs mt-2 ml-2 mb-2">
                 <Title>{`Duration: ${Number.parseFloat(props.globalValues["duration"]/60).toFixed(2)} Mins`}</Title>
                 <Divider/>
                 <Title>{`Energy: ${Number.parseFloat(props.globalValues["energy"]).toFixed(3)} KwH`}</Title>
