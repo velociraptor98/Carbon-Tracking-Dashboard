@@ -6,13 +6,13 @@ const MainDash = (props = {}) => {
         props.onPhaseChange(value);
     }
     return (
-        <Card className="flex flex-col justify-evenly mt-2 overflow-hidden">
-            <div className="flex flex-row overflow-hidden">
+        <Card className="flex flex-col justify-evenly mt-2 overflow-hidden max-h-xs">
+            <div className="flex flex-row overflow-hidden max-h-xs">
                 <Card className="flex flex-row max-w-5xl ml-2 mt-2 mb-2 overflow-auto">
             {
                 props.infoList && props.infoList.map(function(val){
                     return (<Card 
-                    className="max-w-xs mx-auto hover:bg-blue-400" 
+                    className="max-w-xs mx-auto hover:bg-blue-400 max-h-xs" 
                     key={val["name"]} 
                     onClick={()=>localChangeHook(val["name"])}
                     decoration="left"
