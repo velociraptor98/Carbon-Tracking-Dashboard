@@ -8,8 +8,8 @@ const durationFormatter = (number) => `${(number/60).toFixed(2).toString()} Minu
 
 const CarbonDonut = (props = {}) => {
     return (
-        <div className="flex flex-row">
-            <Card className="max-w-auto">
+        <div className="flex flex-row justify-evenly">
+            <Card className="max-w-xs">
                 <Title>Energy Per Run</Title>
                 <DonutChart
                     className="mt-6"
@@ -20,7 +20,7 @@ const CarbonDonut = (props = {}) => {
                     // colors={["slate", "violet", "indigo", "rose", "cyan", "amber"]}
                 />
             </Card>
-            <Card className="max-w-auto">
+            <Card className="max-w-xs">
                 <Title>Emissions Per Run</Title>
                 <DonutChart
                     className="mt-6"
@@ -31,7 +31,7 @@ const CarbonDonut = (props = {}) => {
                     // colors={["slate", "violet", "indigo", "rose", "cyan", "amber"]}
                 />
             </Card>
-            <Card className="max-w-auto">
+            <Card className="max-w-xs">
                 <Title>Duration Per Run</Title>
                 <DonutChart
                     className="mt-6"

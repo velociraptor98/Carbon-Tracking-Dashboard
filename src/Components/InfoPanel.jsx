@@ -1,14 +1,17 @@
 import React from "react";
-import { Card,Title, Divider } from "@tremor/react";
+import { Card,Title, Divider,Button } from "@tremor/react";
 
 const MainDash = (props = {}) => {
-
+    const localChangeHook = (value) => {
+        props.onPhaseChange(value);
+    }
     return (
         <Card className="flex flex-col justify-center">
             <div className="flex flex-row">
+                <Button variant="light" onClick={()=>localChangeHook("def")}>Reset</Button>
             {
                 props.infoList && props.infoList.map(function(val){
-                    return (<Card className="max-w-xs mx-auto hover:bg-teal-900" key={val["name"]} onClick={()=>props.onPhaseChange(val["name"])}>
+                    return (<Card className="max-w-xs mx-auto hover:bg-teal-900" key={val["name"]} onClick={()=>localChangeHook(val["name"])}>
                     <Title className="text-white">{`Phase Name: ${val["name"]}`}</Title>
                     <Title className="text-white">{`Country: ${val["country"]}`}</Title>
                     <Title className="text-white">{`Cloud Provider: ${val["cloud"]}`}</Title>
