@@ -7,6 +7,7 @@ const MainDash = (props = {}) => {
     useEffect(()=>{
         const {csvData,headers} = props;
         let tempList = [];
+        let projectList = [];
         let g = {};
         g["duration"] = 0;
         g["energy"] = 0;
@@ -14,14 +15,17 @@ const MainDash = (props = {}) => {
         if(csvData.length){
             for(let i = 0; i<csvData.length;++i){
                 let tempContainer = {};
+                if(projectList.includes(csvData[i][headers["project_name"]])){}else{
+                console.log(projectList);
                 tempContainer["name"] = csvData[i][headers["project_name"]];
+                projectList.push(tempContainer["name"]);
                 tempContainer["country"] = csvData[i][headers["country_name"]];
                 tempContainer["cloud"] = csvData[i][headers["cloud_region"]];
                 tempContainer["cpumodel"] = csvData[i][headers["cpu_model"]];
                 tempContainer["gpumodel"] = csvData[i][headers["gpu_model"]];
                 tempList.push(tempContainer);
+                }
                 g["duration"]+=Number.parseFloat(csvData[i][headers["duration"]]);
-                // Values scaled temporarily for demo purpose
                 g["energy"]+=Number.parseFloat(csvData[i][headers["energy_consumed"]]); 
                 g["emissions"]+=Number.parseFloat(csvData[i][headers["emissions"]]);
             }
@@ -33,14 +37,16 @@ const MainDash = (props = {}) => {
     return (
         <Card className="flex flex-col justify-center">
             <div className="flex flex-row">
-            {infoList.length &&
-                <Card className="max-w-xs mx-auto">
-                    <Title className="text-white">{`Project Name: ${infoList[0]["name"]}`}</Title>
-                    <Title className="text-white">{`Country: ${infoList[0]["country"]}`}</Title>
-                    <Title className="text-white">{`Cloud Provider: ${infoList[0]["cloud"]}`}</Title>
-                    <Title className="text-white">{`CPU : ${infoList[0]["cpumodel"]}`}</Title>
-                    <Title className="text-white">{`GPU : ${infoList[0]["gpumodel"]}`}</Title>
-                </Card>
+            {
+                infoList.map(function(val){
+                    return (<Card className="max-w-xs mx-auto" key={val["name"]}>
+                    <Title className="text-white">{`Phase Name: ${val["name"]}`}</Title>
+                    <Title className="text-white">{`Country: ${val["country"]}`}</Title>
+                    <Title className="text-white">{`Cloud Provider: ${val["cloud"]}`}</Title>
+                    <Title className="text-white">{`CPU : ${val["cpumodel"]}`}</Title>
+                    <Title className="text-white">{`GPU : ${val["gpumodel"]}`}</Title>
+                </Card>)
+                })
             }
             {globalValues && 
             <Card className=" mx-auto max-w-xs">

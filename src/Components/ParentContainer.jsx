@@ -27,7 +27,7 @@ const ParentContainer = (props = {}) => {
 
 return(
     <Card className="flex flex-col h-full">
-        <Title className="text-black align-center">Carbon Emission Dashboard</Title>
+        <Title className="text-black align-center">Carbon Emission Tracker</Title>
         <Divider/>
         <MainDash
         csvData = {csvFile}
