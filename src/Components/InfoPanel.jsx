@@ -16,7 +16,9 @@ const MainDash = (props = {}) => {
                     <Title>{`Country: ${val["country"]}`}</Title>
                     <Title>{`Cloud Provider: ${val["cloud"]}`}</Title>
                     <Title>{`CPU : ${val["cpumodel"]}`}</Title>
+                    <Title>{`CPU Count: ${val["cpucount"]}`}</Title>
                     <Title>{`GPU : ${val["gpumodel"]}`}</Title>
+                    <Title>{`RAM : ${val["ram"]} GB`}</Title>
                 </Card>)
                 })
             }

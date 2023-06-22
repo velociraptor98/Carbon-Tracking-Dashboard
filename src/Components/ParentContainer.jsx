@@ -50,6 +50,8 @@ const ParentContainer = () => {
                 tempContainer["cloud"] = csvData[i][headers["cloud_region"]];
                 tempContainer["cpumodel"] = csvData[i][headers["cpu_model"]];
                 tempContainer["gpumodel"] = csvData[i][headers["gpu_model"]];
+                tempContainer["ram"] = csvData[i][headers["ram_total_size"]];
+                tempContainer["cpucount"] = csvData[i][headers["cpu_count"]];
                 tempList.push(tempContainer);
                 }
                 if(selectionPhase === 'all' || selectionPhase === csvData[i][headers["project_name"]]){
@@ -80,8 +82,10 @@ const ParentContainer = () => {
     }
 return(
     <Card className="flex flex-col h-full">
+        <Card className="flex flex-row justify-evenly">
         <Title className="align-center">Carbon Emission Tracker</Title>
-        <Title>Data for: {`${selectionPhase}`}</Title>
+        <Title> ---  {`${selectionPhase}`}</Title>
+        </Card>
         <MainDash
         infoList = {infoList}
         globalValues = {globalValues}
