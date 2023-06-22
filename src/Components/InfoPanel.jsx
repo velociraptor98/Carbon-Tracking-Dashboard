@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from "react";
-import { Card,Title, Text, Metric, Divider } from "@tremor/react";
+import { Card,Title, Metric, Divider } from "@tremor/react";
 
 const MainDash = (props = {}) => {
     const [infoList,setInfoList] = useState([]);
@@ -22,8 +22,8 @@ const MainDash = (props = {}) => {
                 tempList.push(tempContainer);
                 g["duration"]+=Number.parseFloat(csvData[i][headers["duration"]]);
                 // Values scaled temporarily for demo purpose
-                g["energy"]+=Number.parseFloat(csvData[i][headers["energy_consumed"]]) * 1000; 
-                g["emissions"]+=Number.parseFloat(csvData[i][headers["emissions"]]) * 1000;
+                g["energy"]+=Number.parseFloat(csvData[i][headers["energy_consumed"]]); 
+                g["emissions"]+=Number.parseFloat(csvData[i][headers["emissions"]]);
             }
         
         }
@@ -31,30 +31,29 @@ const MainDash = (props = {}) => {
         setGlobalValues(g);
     },[props])
     return (
-        <div className="flex flex-col justify-center">
-            <Title className="text-black align-center">Info Panel</Title>
+        <Card className="flex flex-col justify-center">
             <div className="flex flex-row">
             {infoList.length &&
                 <Card className="max-w-xs mx-auto">
-                    <Text className="text-white">{`Project Name: ${infoList[0]["name"]}`}</Text>
-                    <Text className="text-white">{`Country: ${infoList[0]["country"]}`}</Text>
-                    <Text className="text-white">{`Cloud Provider: ${infoList[0]["cloud"]}`}</Text>
-                    <Text className="text-white">{`CPU : ${infoList[0]["cpumodel"]}`}</Text>
-                    <Text className="text-white">{`GPU : ${infoList[0]["gpumodel"]}`}</Text>
+                    <Title className="text-white">{`Project Name: ${infoList[0]["name"]}`}</Title>
+                    <Title className="text-white">{`Country: ${infoList[0]["country"]}`}</Title>
+                    <Title className="text-white">{`Cloud Provider: ${infoList[0]["cloud"]}`}</Title>
+                    <Title className="text-white">{`CPU : ${infoList[0]["cpumodel"]}`}</Title>
+                    <Title className="text-white">{`GPU : ${infoList[0]["gpumodel"]}`}</Title>
                 </Card>
             }
             {globalValues && 
             <Card className=" mx-auto max-w-xs">
-                <Metric className="text-white">{`Duration: ${(globalValues["duration"]/60).toFixed(2)} Mins`}</Metric>
+                <Metric className="text-white">{`Duration: ${Number.parseFloat(globalValues["duration"]/60).toFixed(2)} Mins`}</Metric>
                 <Divider/>
-                <Metric className="text-white">{`Energy: ${globalValues["energy"].toFixed(3)} KwH`}</Metric>
+                <Metric className="text-white">{`Energy: ${Number.parseFloat(globalValues["energy"]).toFixed(3)} KwH`}</Metric>
                 <Divider/>
-                <Metric className="text-white">{`Emissions: ${globalValues["emissions"].toFixed(3)} CO2 Kg`}</Metric>
+                <Metric className="text-white">{`Emissions: ${Number.parseFloat(globalValues["emissions"]).toFixed(3)} CO2 Kg`}</Metric>
             </Card>
             }
             </div>
             <Divider/>
-        </div>
+        </Card>
     )
 }
 export default MainDash

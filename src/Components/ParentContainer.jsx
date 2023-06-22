@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import MainDash from './InfoPanel';
 import CarbonDonut from './CarbonDonut';
 import LineChart from "./LineChartPanel";
-import { Title, Divider } from "@tremor/react";
+import { Title, Divider, Card } from "@tremor/react";
 import * as Papa from 'papaparse';
 
 const ParentContainer = (props = {}) => {
@@ -26,21 +26,24 @@ const ParentContainer = (props = {}) => {
     }, [])
 
 return(
-    <div className="flex flex-col bg-teal-400 h-screen">
+    <Card className="flex flex-col h-full">
         <Title className="text-black align-center">Carbon Emission Dashboard</Title>
         <Divider/>
         <MainDash
         csvData = {csvFile}
         headers = {csvHeaders}/>
+        <Divider/>
         <CarbonDonut
         csvData = {csvFile}
         headers = {csvHeaders}
         />
+        <Divider/>
         <LineChart
         csvData = {csvFile}
         headers = {csvHeaders}
         />
-    </div>
+        <Divider/>
+    </Card>
 )
 }
 
