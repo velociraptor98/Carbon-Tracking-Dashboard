@@ -75,7 +75,7 @@ const ParentContainer = () => {
         setInfoList(tempList);
         setGlobalValues(gl);
         setListData(localG);
-    },[csvFile,selectionPhase])
+    },[csvFile,selectionPhase,csvHeaders])
 
     const onPhaseChange = (value) => {
         setSelectionPhase(value);
