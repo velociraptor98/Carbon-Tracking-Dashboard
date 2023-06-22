@@ -6,7 +6,7 @@ const LineChartPanel = (props = {}) => {
         <Card className="flex flex-col mt-2">
         <Card className="mt-3">
             <Title>Emissions/Energy</Title>
-            <Subtitle>(KwH/Kg Co2)</Subtitle>
+            <Subtitle>(Kg Co2/KwH)</Subtitle>
             <AreaChart
             className="mt-3"
             data={props.listData}

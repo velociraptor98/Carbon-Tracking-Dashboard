@@ -81,9 +81,9 @@ const ParentContainer = () => {
         setSelectionPhase(value);
     }
 return(
-    <Card className="flex flex-col h-full overflow-hidden">
+    <Card className="flex flex-col h-full w-full overflow-hidden">
         <Card className="flex flex-row justify-evenly">
-        <Title className="align-center">Carbon Emission Tracker</Title>
+        <Title className="align-center">CarbonVis</Title>
         <Title> {`(${selectionPhase})`}</Title>
         <Button variant="light" onClick={()=>setSelectionPhase("all")}>Reset</Button>
         </Card>
